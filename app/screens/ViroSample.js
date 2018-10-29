@@ -29,7 +29,7 @@ var AR_NAVIGATOR_TYPE = "AR";
 
 // This determines which type of experience to launch in, or UNSET, if the user should
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
-var defaultNavigatorType = VR_NAVIGATOR_TYPE;
+var defaultNavigatorType = AR_NAVIGATOR_TYPE;
 
 export default class ViroSample extends Component {
   constructor() {
