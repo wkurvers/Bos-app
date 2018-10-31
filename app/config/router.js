@@ -159,6 +159,8 @@ export const MyTab = TabNavigator(
   {
     tabBarComponent: NavigationComponent,
     tabBarPosition: "bottom",
+    swipeEnabled: false,
+
     navigationOptions: ({ naviagtion }) => ({
       tabBarOnPress: (scene, jumpToIndex) => {
         jumpToIndex(scene.index);
@@ -171,6 +173,8 @@ export const MyTab = TabNavigator(
         labelColor: "grey",
         activeLabelColor: "#2196f3",
         rippleColor: "#2196f3",
+        swipeEnabled: false,
+
         tabs: {
           OneStack: {
             activeIcon: (
