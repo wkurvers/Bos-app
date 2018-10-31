@@ -4,7 +4,7 @@ import { NetInfo } from "react-native";
 export default class Api {
   static instance = null;
 
-  url = "http://gaauwe.nl:5000/";
+  url = "0.0.0.0:5000/";
 
   static getInstance() {
     if (Api.instance == null) {
@@ -18,7 +18,7 @@ export default class Api {
     NetInfo.getConnectionInfo().then(connectionInfo => {
       if (connectionInfo.type != "none") {
         if (method == "GET") {
-          fetch(this.url + action, {
+          fetch(action, {
             method: method,
             headers: {
               "Content-Type": "application/json"

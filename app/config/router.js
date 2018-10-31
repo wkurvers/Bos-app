@@ -25,7 +25,6 @@ import {
 import One from "../screens/One";
 import Two from "../screens/Two";
 import Three from "../screens/Three";
-import ViroSample from "../screens/ViroSample";
 import SideMenu from "../screens/SideMenu";
 import Login from "../screens/Login";
 
@@ -118,20 +117,6 @@ export const ThreeStack = StackNavigator(
   }
 );
 
-export const FourStack = StackNavigator(
-  {
-    ViroSample: {
-      screen: ViroSample,
-      navigationOptions: {
-        title: "Three"
-      }
-    }
-  },
-  {
-    headerMode: "none"
-  }
-);
-
 export const LoginStack = StackNavigator(
   {
     Login: {
@@ -174,6 +159,8 @@ export const MyTab = TabNavigator(
   {
     tabBarComponent: NavigationComponent,
     tabBarPosition: "bottom",
+    swipeEnabled: false,
+
     navigationOptions: ({ naviagtion }) => ({
       tabBarOnPress: (scene, jumpToIndex) => {
         jumpToIndex(scene.index);
@@ -186,6 +173,8 @@ export const MyTab = TabNavigator(
         labelColor: "grey",
         activeLabelColor: "#2196f3",
         rippleColor: "#2196f3",
+        swipeEnabled: false,
+
         tabs: {
           OneStack: {
             activeIcon: (
@@ -230,12 +219,6 @@ export const MyApp = StackNavigator(
     },
     LoginStack: {
       screen: LoginStack,
-      navigationOptions: {
-        header: null
-      }
-    },
-    FourStack: {
-      screen: FourStack,
       navigationOptions: {
         header: null
       }
