@@ -27,6 +27,7 @@ import Two from "../screens/Two";
 import Three from "../screens/Three";
 import SideMenu from "../screens/SideMenu";
 import Login from "../screens/Login";
+import ProjectDetail from "../screens/ProjectDetail";
 
 /*
 //StackNavigator for login related screens like login, register and password reset.
@@ -90,11 +91,25 @@ export const OneStack = StackNavigator(
 );
 
 export const TwoStack = StackNavigator(
+    {
+        Two: {
+            screen: Two,
+            navigationOptions: {
+                title: "Two"
+            }
+        }
+    },
+    {
+        headerMode: "none"
+    }
+);
+
+export const ProjectDetailStack = StackNavigator(
   {
-    Two: {
-      screen: Two,
+      ProjectDetail: {
+      screen: ProjectDetail,
       navigationOptions: {
-        title: "Two"
+        title: "ProjectDetail"
       }
     }
   },
@@ -222,7 +237,13 @@ export const MyApp = StackNavigator(
       navigationOptions: {
         header: null
       }
-    }
+    },
+      ProjectDetailStack: {
+          screen: ProjectDetailStack,
+          navigationOptions: {
+              header: null
+          }
+      }
   },
   {}
 );
