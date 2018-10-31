@@ -34,28 +34,32 @@ export default class Three extends Component {
           image: "https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif",
           location: "Groningen",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. "
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. ",
+          likes: 2
         },
         {
           title: "cool project",
           image: "https://media4.giphy.com/media/6csVEPEmHWhWg/200.gif",
           location: "Groningen",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. "
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. ",
+          likes: 15
         },
         {
           title: "cool project",
           image: "https://media4.giphy.com/media/AA69fOAMCPa4o/200.gif",
           location: "Groningen",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. "
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. ",
+          likes: 6
         },
         {
           title: "cool project",
           image: "https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif",
           location: "Groningen",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. "
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. ",
+          likes: 4
         }
       ],
       slicedArray: [],
@@ -65,10 +69,13 @@ export default class Three extends Component {
 
   render() {
     return (
-      <View style={{ width: "100%", height: "100%" }}>
+      <View
+        style={{ backgroundColor: "#e5e5e5", width: "100%", height: "100%" }}
+      >
         <Toolbar centerElement="All projects" />
         <View>
           <FlatList
+            numColumns={2}
             data={this.state.data}
             keyExtractor={item => item.title}
             initialNumToRender={2}
@@ -79,82 +86,81 @@ export default class Three extends Component {
             renderItem={({ item }) => (
               <View style={styles.container}>
                 <View style={styles.card} elevation={5}>
-                  <View
-                    style={{
-                      backgroundColor: "rgba(52, 52, 52, 0,8)",
-                      paddingBottom: 0,
-                      borderBottomLeftRadius: 10,
-                      borderBottomRightRadius: 10
-                    }}
-                  >
-                    <TouchableHighlight onPress={() => {}}>
-                      <ImageBackground
-                        source={{ uri: item.image }}
-                        resizeMode="cover"
-                        imageStyle={{ borderRadius: 10 }}
-                        style={{ width: "100%", height: 250 }}
+                  <TouchableHighlight onPress={() => {}}>
+                    <ImageBackground
+                      source={{ uri: item.image }}
+                      resizeMode="cover"
+                      style={{ width: "100%", height: 250 }}
+                    >
+                      <View
+                        style={{
+                          height: "38%",
+                          width: "100%",
+                          backgroundColor: "#00000080",
+                          position: "absolute",
+                          bottom: 0,
+                          borderRadius: 10
+                        }}
                       >
                         <View
                           style={{
-                            height: "38%",
-                            width: "100%",
-                            backgroundColor: "#00000080",
-                            position: "absolute",
-                            bottom: 0,
-                            borderRadius: 10
+                            flex: 1,
+                            flexDirection: "column",
+                            margin: 20,
+                            marginTop: 7,
+                            marginBottom: 40
                           }}
                         >
-                          <View
+                          <Text
                             style={{
-                              flex: 1,
-                              flexDirection: "column",
-                              margin: 20,
-                              marginTop: 7,
-                              marginBottom: 40
+                              fontWeight: "bold",
+                              fontSize: 20,
+                              color: "white"
                             }}
                           >
-                            <Text
-                              style={{
-                                fontWeight: "bold",
-                                fontSize: 25,
-                                color: "white"
-                              }}
-                            >
-                              {item.title}
-                            </Text>
-                          </View>
-                          <View
+                            {item.title}
+                          </Text>
+                          <Text
                             style={{
-                              flex: 1,
-                              flexDirection: "row",
-                              marginBottom: 10
+                              fontWeight: "bold",
+                              fontSize: 16,
+                              color: "white"
                             }}
                           >
-                            <Text
-                              style={{
-                                fontWeight: "bold",
-                                fontSize: 15,
-                                color: "#BDBDBD",
-                                position: "absolute",
-                                right: 10
-                              }}
-                            >
-                              lees verder
-                            </Text>
-                          </View>
+                            Likes: {item.likes}
+                          </Text>
                         </View>
-                      </ImageBackground>
-                    </TouchableHighlight>
-                    <View
-                      style={{
-                        flex: 1,
-                        flexDirection: "row",
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0
-                      }}
-                    />
-                  </View>
+                        <View
+                          style={{
+                            flex: 1,
+                            flexDirection: "row",
+                            marginBottom: 10
+                          }}
+                        >
+                          <Text
+                            style={{
+                              fontWeight: "bold",
+                              fontSize: 15,
+                              color: "#BDBDBD",
+                              position: "absolute",
+                              right: 10
+                            }}
+                          >
+                            lees verder
+                          </Text>
+                        </View>
+                      </View>
+                    </ImageBackground>
+                  </TouchableHighlight>
+                  <View
+                    style={{
+                      flex: 1,
+                      flexDirection: "row",
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0
+                    }}
+                  />
                 </View>
               </View>
             )}
@@ -178,17 +184,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     // android (Android +5.0)
     elevation: 3
-  },
-  loginButton: {
-    margin: 5,
-    backgroundColor: "#FF6700",
-    padding: 10,
-    borderRadius: 10,
-    overflow: "hidden"
-  },
-  loginButtonText: {
-    textAlign: "center",
-    fontSize: 16,
-    color: "rgba(52, 52, 52, 1.0)"
   }
 });
