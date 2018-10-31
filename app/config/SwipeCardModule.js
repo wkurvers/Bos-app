@@ -29,21 +29,18 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   },
   yup: {
-    borderColor: "green",
-    borderWidth: 2,
+    backgroundColor: "green",
     position: "absolute",
     padding: 20,
-    bottom: 20,
+    top: 20,
     borderRadius: 5,
-    right: 0
+    left: 0
   },
   yupText: {
-    fontSize: 16,
-    color: "green"
+    fontSize: 16
   },
   maybe: {
-    borderColor: "blue",
-    borderWidth: 2,
+    backgroundColor: "blue",
     position: "absolute",
     padding: 20,
     bottom: 20,
@@ -55,8 +52,7 @@ const styles = StyleSheet.create({
     color: "blue"
   },
   nope: {
-    borderColor: "red",
-    borderWidth: 2,
+    backgroundColor: "red",
     position: "absolute",
     bottom: 20,
     padding: 20,
@@ -64,8 +60,7 @@ const styles = StyleSheet.create({
     left: 0
   },
   nopeText: {
-    fontSize: 16,
-    color: "red"
+    fontSize: 16
   }
 });
 
@@ -414,7 +409,6 @@ export default class SwipeCards extends Component {
       let lastScale = 0.85 + (0.15 / cards.length) * i;
 
       let style = {
-        position: "absolute",
         top: this.state.enter.interpolate({
           inputRange: [0, 1],
           outputRange: [lastOffsetY, offsetY]
@@ -521,6 +515,9 @@ export default class SwipeCards extends Component {
         {...this._panResponder.panHandlers}
       >
         {this.props.renderCard(this.state.card)}
+        {this.renderYup()}
+        {this.renderMaybe()}
+        {this.renderNope()}
       </Animated.View>
     );
   }
@@ -660,9 +657,6 @@ export default class SwipeCards extends Component {
     return (
       <View style={styles.container}>
         {this.props.stack ? this.renderStack() : this.renderCard()}
-        {this.renderNope()}
-        {this.renderMaybe()}
-        {this.renderYup()}
       </View>
     );
   }
