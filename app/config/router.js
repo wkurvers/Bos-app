@@ -25,7 +25,6 @@ import {
 import One from "../screens/One";
 import Two from "../screens/Two";
 import Three from "../screens/Three";
-import ViroSample from "../screens/ViroSample";
 import SideMenu from "../screens/SideMenu";
 import Login from "../screens/Login";
 
@@ -108,20 +107,6 @@ export const ThreeStack = StackNavigator(
   {
     Three: {
       screen: Three,
-      navigationOptions: {
-        title: "Three"
-      }
-    }
-  },
-  {
-    headerMode: "none"
-  }
-);
-
-export const FourStack = StackNavigator(
-  {
-    ViroSample: {
-      screen: ViroSample,
       navigationOptions: {
         title: "Three"
       }
@@ -230,12 +215,6 @@ export const MyApp = StackNavigator(
     },
     LoginStack: {
       screen: LoginStack,
-      navigationOptions: {
-        header: null
-      }
-    },
-    FourStack: {
-      screen: FourStack,
       navigationOptions: {
         header: null
       }
