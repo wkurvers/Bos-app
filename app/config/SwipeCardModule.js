@@ -29,18 +29,21 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   },
   yup: {
-    backgroundColor: "green",
+    borderColor: "#22d62e",
     position: "absolute",
+    borderWidth: 3,
     padding: 20,
     top: 20,
     borderRadius: 5,
     left: 0
   },
   yupText: {
-    fontSize: 16
+    fontSize: 16,
+    color: "#22d62e"
   },
   maybe: {
-    backgroundColor: "blue",
+    borderColor: "blue",
+    borderWidth: 3,
     position: "absolute",
     padding: 20,
     bottom: 20,
@@ -52,7 +55,8 @@ const styles = StyleSheet.create({
     color: "blue"
   },
   nope: {
-    backgroundColor: "red",
+    borderColor: "red",
+    borderWidth: 3,
     position: "absolute",
     top: 20,
     padding: 20,
@@ -60,7 +64,8 @@ const styles = StyleSheet.create({
     right: 0
   },
   nopeText: {
-    fontSize: 16
+    fontSize: 16,
+    color: "red"
   }
 });
 
