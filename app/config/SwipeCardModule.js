@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
   nope: {
     backgroundColor: "red",
     position: "absolute",
-    bottom: 20,
+    top: 20,
     padding: 20,
     borderRadius: 5,
-    left: 0
+    right: 0
   },
   nopeText: {
     fontSize: 16
@@ -515,9 +515,6 @@ export default class SwipeCards extends Component {
         {...this._panResponder.panHandlers}
       >
         {this.props.renderCard(this.state.card)}
-        {this.renderYup()}
-        {this.renderMaybe()}
-        {this.renderNope()}
       </Animated.View>
     );
   }
@@ -657,6 +654,9 @@ export default class SwipeCards extends Component {
     return (
       <View style={styles.container}>
         {this.props.stack ? this.renderStack() : this.renderCard()}
+        {this.renderYup()}
+        {this.renderMaybe()}
+        {this.renderNope()}
       </View>
     );
   }
