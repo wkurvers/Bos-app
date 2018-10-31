@@ -18,7 +18,7 @@ export default class Api {
     NetInfo.getConnectionInfo().then(connectionInfo => {
       if (connectionInfo.type != "none") {
         if (method == "GET") {
-          fetch(this.url + action, {
+          fetch(action, {
             method: method,
             headers: {
               "Content-Type": "application/json"
