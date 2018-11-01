@@ -7,7 +7,7 @@ module.exports = (async () => {
 
   return {
     resolver: {
-      assetExts: [...assetExts, "obj", "mtl", "JPG", "vrx", "fbx", "hdr"]
+      assetExts: [...assetExts, "obj", "mtl", "JPG", "vrx", "fbx", "hdr", "tga"]
     }
   };
 })();

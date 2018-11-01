@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Toolbar } from "react-native-material-ui";
 import LocalStorage from "../config/localStorage.js";
+import SwipeCards from "./SwipeCard.js";
 
 export default class One extends Component {
   constructor() {
@@ -20,7 +21,7 @@ export default class One extends Component {
           onLeftElementPress={() => this.props.navigation.toggleDrawer()}
         />
         <View style={styles.container}>
-          <Text>Screen one</Text>
+          <SwipeCards style={{ flex: 1 }} />
         </View>
       </View>
     );
@@ -31,6 +32,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    width: "100%",
+    height: "100%"
   }
 });

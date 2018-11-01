@@ -25,11 +25,11 @@ import {
 import One from "../screens/One";
 import Two from "../screens/Two";
 import Three from "../screens/Three";
-import ViroSample from "../screens/ViroSample";
 import SideMenu from "../screens/SideMenu";
 import Login from "../screens/Login";
 import Exchange from "../screens/Exchange";
 import RequestDetail from "../screens/RequestDetail";
+import Profile from "../screens/Profile";
 
 /*
 //StackNavigator for login related screens like login, register and password reset.
@@ -120,12 +120,12 @@ export const ThreeStack = StackNavigator(
   }
 );
 
-export const FourStack = StackNavigator(
+export const LoginStack = StackNavigator(
   {
-    ViroSample: {
-      screen: ViroSample,
+    Login: {
+      screen: Login,
       navigationOptions: {
-        title: "Three"
+        title: "Login"
       }
     }
   },
@@ -155,12 +155,12 @@ export const ExchangeStack = StackNavigator(
     }
 );
 
-export const LoginStack = StackNavigator(
+export const ProfileStack = StackNavigator(
   {
-    Login: {
-      screen: Login,
+    Profile: {
+      screen: Profile,
       navigationOptions: {
-        title: "Login"
+        title: "Profile"
       }
     }
   },
@@ -179,10 +179,10 @@ export const MyTab = TabNavigator(
         tabBarIcon: <Icon size={25} name={"dog"} style={{ color: "grey" }} />
       }
     },
-    TwoStack: {
-      screen: TwoStack,
+    ProfileStack: {
+      screen: ProfileStack,
       navigationOptions: {
-        tabBarLabel: "Two",
+        tabBarLabel: "Profile",
         tabBarIcon: <Icon size={25} name={"cat"} style={{ color: "grey" }} />
       }
     },
@@ -204,6 +204,8 @@ export const MyTab = TabNavigator(
   {
     tabBarComponent: NavigationComponent,
     tabBarPosition: "bottom",
+    swipeEnabled: false,
+
     navigationOptions: ({ naviagtion }) => ({
       tabBarOnPress: (scene, jumpToIndex) => {
         jumpToIndex(scene.index);
@@ -216,13 +218,15 @@ export const MyTab = TabNavigator(
         labelColor: "grey",
         activeLabelColor: "#2196f3",
         rippleColor: "#2196f3",
+        swipeEnabled: false,
+
         tabs: {
           OneStack: {
             activeIcon: (
               <Icon size={25} name={"dog"} style={{ color: "#2196f3" }} />
             )
           },
-          TwoStack: {
+          ProfileStack: {
             activeIcon: (
               <Icon size={25} name={"cat"} style={{ color: "#2196f3" }} />
             )
@@ -264,8 +268,14 @@ export const MyApp = StackNavigator(
         header: null
       }
     },
-    FourStack: {
-      screen: FourStack,
+    TwoStack: {
+      screen: TwoStack,
+      navigationOptions: {
+        header: null
+      }
+    },
+    ProfileStack: {
+      screen: ProfileStack,
       navigationOptions: {
         header: null
       }

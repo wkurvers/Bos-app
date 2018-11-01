@@ -15,7 +15,7 @@ import Api from "./config/api.js"
 // you can set your style right here, it'll be propagated to application
 const uiTheme = {
   palette: {
-    primaryColor: "#2196f3"
+    primaryColor: "#9e9e9e"
   },
   toolbar: {
     container: {
@@ -49,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <StatusBar backgroundColor="#0069c0" barStyle="light-content" />
+        <StatusBar backgroundColor="#757575" barStyle="light-content" />
         <ThemeContext.Provider value={getTheme(uiTheme)}>
           <MyApp />
         </ThemeContext.Provider>
