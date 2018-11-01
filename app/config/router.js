@@ -28,6 +28,8 @@ import Three from "../screens/Three";
 import ViroSample from "../screens/ViroSample";
 import SideMenu from "../screens/SideMenu";
 import Login from "../screens/Login";
+import Exchange from "../screens/Exchange";
+import RequestDetail from "../screens/RequestDetail";
 
 /*
 //StackNavigator for login related screens like login, register and password reset.
@@ -132,6 +134,27 @@ export const FourStack = StackNavigator(
   }
 );
 
+export const ExchangeStack = StackNavigator(
+    {
+        Exchange: {
+            screen: Exchange,
+            navigationOptions: {
+                title: "Marktplaats"
+            }
+        },
+
+        RequestDetail: {
+            screen: RequestDetail,
+            navigationOptions: {
+                title: "Marktplaats"
+            }
+        }
+    },
+    {
+        headerMode: "none"
+    }
+);
+
 export const LoginStack = StackNavigator(
   {
     Login: {
@@ -169,6 +192,13 @@ export const MyTab = TabNavigator(
         tabBarLabel: "Three",
         tabBarIcon: <Icon size={25} name={"cow"} style={{ color: "grey" }} />
       }
+    },
+    ExchangeStack: {
+        screen: ExchangeStack,
+        navigationOptions: {
+            tabBarLabel: "Marktplaats",
+            tabBarIcon: <Icon size={25} name={"pig"} style={{ color: "grey" }} />
+        }
     }
   },
   {

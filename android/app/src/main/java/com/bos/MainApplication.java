@@ -3,6 +3,7 @@ package com.bos;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -25,8 +26,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeOneSignalPackage(),
             new VectorIconsPackage(),
-              new ReactViroPackage(ReactViroPackage.ViroPlatform.GVR)
+            new ReactViroPackage(ReactViroPackage.ViroPlatform.GVR)
 
       );
     }
