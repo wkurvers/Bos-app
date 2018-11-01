@@ -157,8 +157,11 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      cards: []
+      cards: [],
+      likedCards: []
     };
+
+    this.handleYup = this.handleYup.bind(this);
 
     let api = Api.getInstance();
     console.log(" hallo");
@@ -179,7 +182,13 @@ export default class App extends React.Component {
   }
 
   handleYup(card) {
-    console.log("yup");
+    let data = {
+      projectId: card.id,
+      userId: 1
+    };
+    console.log(data);
+    let api = Api.getInstance();
+    api.callApi("addLike", "POST", data, response => {});
   }
 
   handleNope(card) {
@@ -293,8 +302,7 @@ const styles = StyleSheet.create({
   },
   thumbnail: {
     width: "100%",
-    height: "50%",
-    resizeMode: "cover"
+    height: "50%"
   },
   text: {
     fontSize: 25,
