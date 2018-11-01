@@ -349,8 +349,16 @@ export const MyApp = StackNavigator(
             navigationOptions: {
                 header: null
             }
+        },
+        ProfileStack: {
+            screen: ProfileStack,
+            navigationOptions: {
+                header: null
+            }
         }
+
     },
+
 
 
     {}

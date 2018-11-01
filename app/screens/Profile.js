@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Toolbar } from "react-native-material-ui";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default class Two extends Component {
     constructor(props) {
@@ -25,102 +25,141 @@ export default class Two extends Component {
                     }}
                 />
 
-                <View
-                    style={{
-                        flexDirection: "column",
-                        height: 60,
-                        width: "100%",
-                        padding: 10,
-                        paddingLeft: 30
-                    }}
-                >
-                    <Text style={{ fontWeight: "bold", fontSize: 20 }}>Bartel-Jaap</Text>
-                    <Text style={{ fontSize: 16 }}>IT Profesional</Text>
-                </View>
-                <View style={{ width: "100%", flexDirection: "column" }}>
-                    <View
-                        style={{
-                            height: 40,
-                            width: "100%",
-                            flexDirection: "row",
-                            paddingTop: 20
-                        }}
-                    >
-                        <Image
-                            source={require("../assets/Polygon.png")}
-                            style={{
-                                width: 15,
-                                height: 15,
-                                marginLeft: 75,
-                                marginRight: 20
-                            }}
-                        />
-                        <Text>Beschrijving</Text>
-                    </View>
-                    <View style={{ flexDirection: "row" }}>
-                        <View
-                            style={{
-                                width: 2,
-                                height: 145,
-                                backgroundColor: "#cfd8dc",
-                                marginLeft: 80,
-                                marginTop: 10
-                            }}
-                        />
-                        <Text style={{ margin: 20, width: 250 }}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non
-                            lacinia nibh. Pellentesque faucibus ante sed enim fringilla,
-                            accumsan malesuada elit mollis. Fusce posuere tincidunt quam sed
-                            consequat. Phasellus eu erat eu turpis mattis aliquet nec non
-                            ante.
-                        </Text>
-                    </View>
-                </View>
-                <View style={{ width: "100%", flexDirection: "column" }}>
-                    <View
-                        style={{
-                            height: 40,
-                            width: "100%",
-                            flexDirection: "row",
-                            paddingTop: 20
-                        }}
-                    >
-                        <Image
-                            source={require("../assets/Polygon.png")}
-                            style={{
-                                width: 15,
-                                height: 15,
-                                marginLeft: 75,
-                                marginRight: 20
-                            }}
-                        />
-                        <Text>Projecten</Text>
-                    </View>
-                    <View style={{ flexDirection: "row" }}>
-                        <View
-                            style={{
-                                width: 2,
-                                height: 75,
-                                backgroundColor: "#cfd8dc",
-                                marginLeft: 80,
-                                marginTop: 10
-                            }}
-                        />
-                        <Text style={{ margin: 20, width: 250 }}>
-                            {"\u2022" +
-                            " Project 1 " +
-                            "\n" +
-                            "\u2022" +
-                            " Project 2" +
-                            "\n" +
-                            "\u2022" +
-                            " Project 3"}
-                        </Text>
-                    </View>
-                </View>
+        <View
+          style={{
+            flexDirection: "column",
+            height: 85,
+            width: "100%",
+            padding: 10,
+            paddingLeft: 30,
+            backgroundColor: "white",
+            //ios
+            shadowOpacity: 0.3,
+            shadowRadius: 3,
+            shadowOffset: {
+              height: 0,
+              width: 0
+            },
+            //android
+            elevation: 1
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("TwoStack")}
+            style={{
+              width: 60,
+              height: 60,
+              borderRadius: 60,
+              padding: 17,
+              backgroundColor: "#7ccad8",
+              position: "absolute",
+              right: 20,
+              top: -30,
+              //ios
+              shadowOpacity: 0.3,
+              shadowRadius: 3,
+              shadowOffset: {
+                height: 0,
+                width: 0
+              },
+              //android
+              elevation: 1
+            }}
+          >
+            <Icon size={25} name={"message"} style={{ color: "white" }} />
+          </TouchableOpacity>
+          <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+            Bartel-Jaap de Wildt
+          </Text>
+          <Text style={{ fontSize: 16, color: "#e95827" }}>
+            Docent Statistiek
+          </Text>
+          <Text style={{ fontSize: 14, color: "#e95827" }}>
+            Paddepoel, Groningen
+          </Text>
+        </View>
+        <View style={{ padding: 30 }}>
+          <Text style={{ fontWeight: "bold", fontSize: 16, paddingBottom: 10 }}>
+            Over mij
+          </Text>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+            tempor eros eget nunc pellentesque rutrum. In vitae lectus eget sem
+            luctus gravida eget et metus. Aliquam iaculis lacus turpis, eu
+            suscipit odio pellentesque luctus. Morbi venenatis, arcu sed cursus
+            sodales, neque dui pulvinar lectus, blandit pharetra turpis metus ac
+            ante.
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 30
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  width: 55,
+                  height: 55,
+                  borderRadius: 55,
+                  backgroundColor: "black"
+                }}
+              >
+                <Icon
+                  size={25}
+                  name={"folder-multiple-image"}
+                  style={{ color: "white", padding: 15 }}
+                />
+              </TouchableOpacity>
+              <Text style={{ padding: 5 }}>Projecten</Text>
             </View>
-        );
-    }
+            <Image
+              source={require("../assets/Polygon.png")}
+              style={{
+                height: 15,
+                width: 15,
+                margin: 15,
+                marginBottom: 50,
+                marginLeft: 50,
+                marginRight: 50
+              }}
+            />
+            <View
+              style={{
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  width: 55,
+                  height: 55,
+                  borderRadius: 55,
+                  backgroundColor: "black"
+                }}
+              >
+                <Icon
+                  size={25}
+                  name={"magnify"}
+                  style={{ color: "white", padding: 15 }}
+                />
+              </TouchableOpacity>
+              <Text style={{ padding: 5 }}>Op zoek naar</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
