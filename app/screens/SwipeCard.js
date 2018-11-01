@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Api from "../config/api.js";
 
 import SwipeCards from "../config/SwipeCardModule.js";
 
@@ -22,17 +23,22 @@ class Card extends React.Component {
   render() {
     return (
       <View style={styles.card}>
-        <Image style={styles.thumbnail} source={{ uri: this.props.image }} />
+        <Image
+          style={styles.thumbnail}
+          source={{ uri: this.props.thumbnail }}
+        />
         <Text style={styles.text}>{this.props.title}</Text>
-        <View style={{ flexDirection: "row" }}>
-          <Icon
-            name="map-marker"
-            backgroundColor="#3b5998"
-            style={{ padding: 5 }}
-          />
-          <Text style={{ paddingTop: 5 }}>{this.props.location}</Text>
-        </View>
-        <Text style={{ padding: 10 }}>{this.props.description}</Text>
+        {
+          //<View style={{ flexDirection: "row" }}>
+          // <Icon
+          //   name="map-marker"
+          //   backgroundColor="#3b5998"
+          //   style={{ padding: 5 }}
+          // />
+          // <Text style={{ paddingTop: 5 }}>{this.props.location}</Text>
+          //</View>
+        }
+        <Text style={{ padding: 10 }}>{this.props.desc}</Text>
       </View>
     );
   }
@@ -149,10 +155,27 @@ const cards2 = [
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      cards: cards,
-      outOfCards: false
+      cards: []
     };
+
+    let api = Api.getInstance();
+    console.log(" hallo");
+    api.callApi(
+      "getAllProjects",
+      "POST",
+      {
+        hello: "hello"
+      },
+      response => {
+        console.log(response["response"]);
+        this.setState({
+          cards: response["response"],
+          loading: false
+        });
+      }
+    );
   }
 
   handleYup(card) {
@@ -258,6 +281,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   card: {
     alignItems: "center",
+    justifyContent: "center",
     borderRadius: 20,
     overflow: "hidden",
     borderColor: "grey",
@@ -269,7 +293,8 @@ const styles = StyleSheet.create({
   },
   thumbnail: {
     width: "100%",
-    height: "50%"
+    height: "50%",
+    resizeMode: "cover"
   },
   text: {
     fontSize: 25,

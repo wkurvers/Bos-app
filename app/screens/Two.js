@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { Toolbar } from "react-native-material-ui";
 import {
   GiftedChat,
@@ -7,6 +7,17 @@ import {
   Bubble,
   SystemMessage
 } from "react-native-gifted-chat";
+import Chatkit from "@pusher/chatkit";
+
+let avatar =
+  "https://cdn1.thr.com/sites/default/files/2017/08/gettyimages-630421358_-_h_2017.jpg";
+
+const CHATKIT_TOKEN_PROVIDER_ENDPOINT =
+  "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/7a1cbaa3-f8be-4884-bcd4-105001f60c3f/token";
+const CHATKIT_INSTANCE_LOCATOR = "v1:us1:7a1cbaa3-f8be-4884-bcd4-105001f60c3f";
+const CHATKIT_ROOM_ID = "19372266";
+const CHATKIT_USER_NAME = "bartel"; // Let's chat as "Dave" for this tutorial
+
 export default class Two extends Component {
   constructor(props) {
     super(props);
@@ -19,12 +30,46 @@ export default class Two extends Component {
 
     this._isMounted = false;
     this.onSend = this.onSend.bind(this);
-    this.onReceive = this.onReceive.bind(this);
+    //this.onReceive = this.onReceive.bind(this);
     this.renderBubble = this.renderBubble.bind(this);
     this.renderSystemMessage = this.renderSystemMessage.bind(this);
     this.renderFooter = this.renderFooter.bind(this);
 
     this._isAlright = null;
+  }
+
+  componentDidMount() {
+    // This will create a `tokenProvider` object. This object will be later used to make a Chatkit Manager instance.
+    const tokenProvider = new Chatkit.TokenProvider({
+      url: CHATKIT_TOKEN_PROVIDER_ENDPOINT
+    });
+
+    // This will instantiate a `chatManager` object. This object can be used to subscribe to any number of rooms and users and corresponding messages.
+    // For the purpose of this example we will use single room-user pair.
+    const chatManager = new Chatkit.ChatManager({
+      instanceLocator: CHATKIT_INSTANCE_LOCATOR,
+      userId: CHATKIT_USER_NAME,
+      tokenProvider: tokenProvider
+    });
+    // In order to subscribe to the messages this user is receiving in this room, we need to `connect()` the `chatManager` and have a hook on `onNewMessage`. There are several other hooks that you can use for various scenarios. A comprehensive list can be found [here](https://docs.pusher.com/chatkit/reference/javascript#connection-hooks).
+    chatManager.connect().then(currentUser => {
+      this.currentUser = currentUser;
+      console.log(currentUser);
+      currentUser.subscribeToRoom({
+        roomId: 19372266,
+        hooks: {
+          onMessage: message => console.log("YEAAAH")
+        },
+        messageLimit: 10
+      });
+    });
+  }
+
+  onSend([message]) {
+    this.currentUser.sendMessage({
+      text: message.text,
+      roomId: CHATKIT_ROOM_ID
+    });
   }
 
   componentWillMount() {
@@ -48,9 +93,29 @@ export default class Two extends Component {
     });
 
     // for demo purpose
-    this.answerDemo(messages);
   }
 
+  onReceive(data) {
+    console.log(data);
+    const { id, senderId, text, createdAt } = data;
+    const incomingMessage = {
+      _id: id,
+      text: text,
+      createdAt: new Date(createdAt),
+      user: {
+        _id: senderId,
+        name: senderId,
+        avatar:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmXGGuS_PrRhQt73sGzdZvnkQrPXvtA-9cjcPxJLhLo8rW-sVA"
+      }
+    };
+
+    this.setState(previousState => ({
+      messages: GiftedChat.append(previousState.messages, incomingMessage)
+    }));
+  }
+
+  /*
   answerDemo(messages) {
     if (messages.length > 0) {
       if (messages[0].image || messages[0].location || !this._isAlright) {
@@ -91,7 +156,9 @@ export default class Two extends Component {
       });
     }, 1000);
   }
+  */
 
+  /*
   onReceive(text) {
     this.setState(previousState => {
       return {
@@ -101,14 +168,14 @@ export default class Two extends Component {
           createdAt: new Date(),
           user: {
             _id: 2,
-            name: "React Native"
-            // avatar: 'https://facebook.github.io/react/img/logo_og.png',
+            name: "React Native",
+            avatar: avatar
           }
         })
       };
     });
   }
-
+*/
   renderBubble(props) {
     return (
       <Bubble
@@ -141,19 +208,15 @@ export default class Two extends Component {
       return (
         <View style={styles.footerContainer}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <View
+            <Image
+              source={{ uri: avatar }}
               style={{
                 height: 35,
                 width: 35,
                 borderRadius: 35,
-                margin: 10,
-                backgroundColor: "#2ecc71",
-                alignItems: "center",
-                justifyContent: "center"
+                margin: 10
               }}
-            >
-              <Text style={{ fontSize: 16, color: "white" }}>RN</Text>
-            </View>
+            />
             <View
               style={{
                 borderRadius: 15,
@@ -177,14 +240,15 @@ export default class Two extends Component {
       <View style={{ width: "100%", height: "100%" }}>
         <Toolbar
           leftElement="menu"
-          centerElement="Two"
+          centerElement="Conversation"
           onLeftElementPress={() => this.props.navigation.toggleDrawer()}
         />
         <GiftedChat
+          onPressAvatar={() => this.props.navigation.navigate("Profile")}
           messages={this.state.messages}
-          onSend={this.onSend}
+          onSend={messages => this.onSend(messages)}
           user={{
-            _id: 1 // sent messages should have same user._id
+            _id: CHATKIT_USER_NAME
           }}
           renderBubble={this.renderBubble}
           renderSystemMessage={this.renderSystemMessage}
