@@ -27,6 +27,7 @@ import Two from "../screens/Two";
 import Three from "../screens/Three";
 import SideMenu from "../screens/SideMenu";
 import Login from "../screens/Login";
+import Profile from "../screens/Profile";
 
 /*
 //StackNavigator for login related screens like login, register and password reset.
@@ -131,6 +132,20 @@ export const LoginStack = StackNavigator(
   }
 );
 
+export const ProfileStack = StackNavigator(
+  {
+    Profile: {
+      screen: Profile,
+      navigationOptions: {
+        title: "Profile"
+      }
+    }
+  },
+  {
+    headerMode: "none"
+  }
+);
+
 //TabNavigator for the app when not logged in
 export const MyTab = TabNavigator(
   {
@@ -141,10 +156,10 @@ export const MyTab = TabNavigator(
         tabBarIcon: <Icon size={25} name={"dog"} style={{ color: "grey" }} />
       }
     },
-    TwoStack: {
-      screen: TwoStack,
+    ProfileStack: {
+      screen: ProfileStack,
       navigationOptions: {
-        tabBarLabel: "Two",
+        tabBarLabel: "Profile",
         tabBarIcon: <Icon size={25} name={"cat"} style={{ color: "grey" }} />
       }
     },
@@ -181,7 +196,7 @@ export const MyTab = TabNavigator(
               <Icon size={25} name={"dog"} style={{ color: "#2196f3" }} />
             )
           },
-          TwoStack: {
+          ProfileStack: {
             activeIcon: (
               <Icon size={25} name={"cat"} style={{ color: "#2196f3" }} />
             )
@@ -219,6 +234,12 @@ export const MyApp = StackNavigator(
     },
     LoginStack: {
       screen: LoginStack,
+      navigationOptions: {
+        header: null
+      }
+    },
+    TwoStack: {
+      screen: TwoStack,
       navigationOptions: {
         header: null
       }

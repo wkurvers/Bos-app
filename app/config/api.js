@@ -21,6 +21,7 @@ export default class Api {
         method: method,
         headers: {
           "Content-Type": "application/json"
+
         }
       })
         .then(response => response.json())
