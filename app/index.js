@@ -49,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <StatusBar backgroundColor="#757575" barStyle="light-content" />
+        <StatusBar backgroundColor="#E9552F" barStyle="light-content" />
         <ThemeContext.Provider value={getTheme(uiTheme)}>
           <MyApp />
         </ThemeContext.Provider>
