@@ -27,6 +27,8 @@ import Two from "../screens/Two";
 import Three from "../screens/Three";
 import SideMenu from "../screens/SideMenu";
 import Login from "../screens/Login";
+import Exchange from "../screens/Exchange";
+import RequestDetail from "../screens/RequestDetail";
 import Profile from "../screens/Profile";
 import ProjectDetail from "../screens/ProjectDetail/ProjectDetail";
 import Detail from "../screens/ProjectDetail/Detail";
@@ -135,6 +137,27 @@ export const LoginStack = StackNavigator(
     }
 );
 
+export const ExchangeStack = StackNavigator(
+    {
+        Exchange: {
+            screen: Exchange,
+            navigationOptions: {
+                title: "Marktplaats"
+            }
+        },
+
+        RequestDetail: {
+            screen: RequestDetail,
+            navigationOptions: {
+                title: "Marktplaats"
+            }
+        }
+    },
+    {
+        headerMode: "none"
+    }
+);
+
 export const ProfileStack = StackNavigator(
     {
         Profile: {
@@ -193,33 +216,40 @@ export const UpdatesStack = StackNavigator(
 
 //TabNavigator for the app when not logged in
 export const MyTab = TabNavigator(
-    {
-        OneStack: {
-            screen: OneStack,
-            navigationOptions: {
-                tabBarLabel: "One",
-                tabBarIcon: <Icon size={25} name={"dog"} style={{ color: "grey" }} />
-            }
-        },
-        ProfileStack: {
-            screen: ProfileStack,
-            navigationOptions: {
-                tabBarLabel: "Profile",
-                tabBarIcon: <Icon size={25} name={"cat"} style={{ color: "grey" }} />
-            }
-        },
-        ThreeStack: {
-            screen: ThreeStack,
-            navigationOptions: {
-                tabBarLabel: "Three",
-                tabBarIcon: <Icon size={25} name={"cow"} style={{ color: "grey" }} />
-            }
-        }
+  {
+    OneStack: {
+      screen: OneStack,
+      navigationOptions: {
+        tabBarLabel: "One",
+        tabBarIcon: <Icon size={25} name={"dog"} style={{ color: "grey" }} />
+      }
     },
-    {
-        tabBarComponent: NavigationComponent,
-        tabBarPosition: "bottom",
-        swipeEnabled: false,
+    ProfileStack: {
+      screen: ProfileStack,
+      navigationOptions: {
+        tabBarLabel: "Profile",
+        tabBarIcon: <Icon size={25} name={"cat"} style={{ color: "grey" }} />
+      }
+    },
+    ThreeStack: {
+      screen: ThreeStack,
+      navigationOptions: {
+        tabBarLabel: "Three",
+        tabBarIcon: <Icon size={25} name={"cow"} style={{ color: "grey" }} />
+      }
+    },
+    ExchangeStack: {
+        screen: ExchangeStack,
+        navigationOptions: {
+            tabBarLabel: "Marktplaats",
+            tabBarIcon: <Icon size={25} name={"pig"} style={{ color: "grey" }} />
+        }
+    }
+  },
+  {
+    tabBarComponent: NavigationComponent,
+    tabBarPosition: "bottom",
+    swipeEnabled: false,
 
         navigationOptions: ({ naviagtion }) => ({
             tabBarOnPress: (scene, jumpToIndex) => {

@@ -9,6 +9,9 @@ import {
 } from "react-native";
 import { COLOR, ThemeContext, getTheme } from "react-native-material-ui";
 import { Header } from "react-navigation";
+import OneSignal from 'react-native-onesignal';
+import LocalStorage from "./config/localStorage.js";
+import Api from "./config/api.js"
 // you can set your style right here, it'll be propagated to application
 const uiTheme = {
   palette: {
@@ -28,7 +31,20 @@ class App extends Component {
     console.disableYellowBox = true;
   }
 
-  componentDidMount() {}
+  componentWillMount() {
+    OneSignal.init("40e57605-3c79-454d-a577-c07aea4a7991");
+    OneSignal.configure();
+    OneSignal.addEventListener('ids', this.onIds);
+  }
+
+  componentWillUnmount() {
+    OneSignal.removeEventListener('ids', this.onIds);
+}
+
+  onIds(device) {
+    ls = LocalStorage.getInstance();
+    ls.savePlayerId(device.userId);
+}
 
   render() {
     return (
