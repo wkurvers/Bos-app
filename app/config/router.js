@@ -27,6 +27,8 @@ import Two from "../screens/Two";
 import Three from "../screens/Three";
 import SideMenu from "../screens/SideMenu";
 import Login from "../screens/Login";
+import Exchange from "../screens/Exchange";
+import RequestDetail from "../screens/RequestDetail";
 import Profile from "../screens/Profile";
 
 /*
@@ -132,6 +134,27 @@ export const LoginStack = StackNavigator(
   }
 );
 
+export const ExchangeStack = StackNavigator(
+    {
+        Exchange: {
+            screen: Exchange,
+            navigationOptions: {
+                title: "Marktplaats"
+            }
+        },
+
+        RequestDetail: {
+            screen: RequestDetail,
+            navigationOptions: {
+                title: "Marktplaats"
+            }
+        }
+    },
+    {
+        headerMode: "none"
+    }
+);
+
 export const ProfileStack = StackNavigator(
   {
     Profile: {
@@ -169,6 +192,13 @@ export const MyTab = TabNavigator(
         tabBarLabel: "Three",
         tabBarIcon: <Icon size={25} name={"cow"} style={{ color: "grey" }} />
       }
+    },
+    ExchangeStack: {
+        screen: ExchangeStack,
+        navigationOptions: {
+            tabBarLabel: "Marktplaats",
+            tabBarIcon: <Icon size={25} name={"pig"} style={{ color: "grey" }} />
+        }
     }
   },
   {
