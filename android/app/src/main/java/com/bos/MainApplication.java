@@ -11,7 +11,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.viromedia.bridge.ReactViroPackage;
 
-import com.bos.permissionwebview.PermissionWebviewPackage;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,9 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new LinearGradientPackage(),
             new VectorIconsPackage(),
-              new ReactViroPackage(ReactViroPackage.ViroPlatform.GVR),
-                          new PermissionWebviewPackage()
-
+              new ReactViroPackage(ReactViroPackage.ViroPlatform.GVR)
 
       );
     }
