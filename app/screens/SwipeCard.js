@@ -182,10 +182,13 @@ export default class App extends React.Component {
   }
 
   handleYup(card) {
-    this.setState(prevState => ({
-      likedCards: [...prevState.likedCards, card]
-    }));
-    console.log(this.state.likedCards);
+    let data = {
+      projectId: card.id,
+      userId: 1
+    };
+    console.log(data);
+    let api = Api.getInstance();
+    api.callApi("addLike", "POST", data, response => {});
   }
 
   handleNope(card) {
