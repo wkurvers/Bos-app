@@ -71,7 +71,11 @@ export default class Three extends Component {
               <View style={styles.container}>
                 <View style={styles.card} elevation={5}>
                   <TouchableHighlight onPress={() => {}}>
-                    <Image source={item.thumbnail} style={{ width: "100%", height: 68% }>
+                    <ImageBackground
+                      source={{ uri: item.thumbnail }}
+                      resizeMode="cover"
+                      style={{ width: "100%", height: 250 }}
+                    >
                       <View
                         style={{
                           height: "38%",
