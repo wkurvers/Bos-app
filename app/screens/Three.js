@@ -42,14 +42,11 @@ export default class Three extends Component {
         hello: "hello"
       },
       response => {
-        console.log("ok");
-        console.log(response);
-        if (response["responseCode"] == 200) {
-          this.setState({
-            data: response,
-            loading: false
-          });
-        }
+        console.log(response["response"]);
+        this.setState({
+          data: response["response"],
+          loading: false
+        });
       }
     );
   }

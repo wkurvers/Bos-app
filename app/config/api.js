@@ -3,7 +3,7 @@ import React from "react";
 export default class Api {
   static instance = null;
 
-  url = "145.100.213.174:5000/";
+  url = "http://172.20.10.2:5000/";
 
   static getInstance() {
     if (Api.instance == null) {
@@ -14,8 +14,9 @@ export default class Api {
   }
 
   callApi(action, method, data, callBack = response => console.log(response)) {
+    console.log(" calling");
     if (method == "GET") {
-      fetch(action, {
+      fetch(this.url + action, {
         method: method,
         headers: {
           "Content-Type": "application/json"
@@ -27,10 +28,10 @@ export default class Api {
           callBack(error);
         });
     } else if (method == "POST") {
+      console.log(this.url + action);
       fetch(this.url + action, {
         method: method,
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
