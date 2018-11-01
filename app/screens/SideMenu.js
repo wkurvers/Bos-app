@@ -47,8 +47,8 @@ class SideMenu extends Component {
               { icon: "bookmark-border", value: "Item 1", active: true },
               {
                 icon: "today",
-                value: "Item 2",
-                onPress: () => this.props.navigation.navigate("LoginScreen")
+                value: "Chat",
+                onPress: () => this.props.navigation.navigate("TwoStack")
               },
               { icon: "assignment", value: "Item 3" }
             ]}
