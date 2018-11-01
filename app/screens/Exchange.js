@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, FlatList, TouchableHighlight } from "react-native";
+import { View, Text, StyleSheet, FlatList, TouchableHighlight, Dimensions, Image } from "react-native";
 import { Toolbar } from "react-native-material-ui";
 import LocalStorage from "../config/localStorage.js";
 import Api from "../config/api.js";
 import { NavigationActions } from "react-navigation";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default class Exchange extends Component {
   constructor() {
@@ -40,27 +41,56 @@ export default class Exchange extends Component {
           <FlatList
             data={this.state.dataArray}
             keyExtractor={item => "" + item.id}
-            numColumns={2}
+            numColumns={1}
             renderItem={ ({item}) => (
-                    <TouchableHighlight
-                        onPress={() =>
-                            this.props.navigation.navigate("RequestDetail",
-                                    {
-                                        id: item.id,
-                                        owner: item.owner,
-                                        ownerId: item.ownerId,
-                                        title: item.title,
-                                        description: item.description,
-                                        necessity: item.necessity
-                                    }
-                                )
-                        }
-                    >
-                        <View>
-                            <Text>{item.title}</Text>
-                            <Text>Door {item.owner}</Text>
-                        </View>
-                    </TouchableHighlight>
+                        <View style={styles.cardContainer}>
+                            <Image
+                                source={{ uri: item.profilePhoto }}
+                                resizeMode="cover"
+                                style={{ width: 50, height: 50, borderRadius:30, margin: 3 }}
+                            />
+                            <View style={{
+                                    alignItems: 'flex-start',
+                                    width: Dimensions.get("window").width - 110
+                                }}>
+                                <Text style={{ 
+                                    fontWeight: "bold",
+                                    fontSize: 18,
+                                    color: "black",
+                                    }}>
+                                    {item.title}
+                                </Text>
+                                <Text style={{ 
+                                    fontSize: 13,
+                                    color: "black",
+                                    }}>
+                                    {item.location}
+                                </Text>
+                            </View>
+                            <TouchableHighlight
+                                onPress={() =>
+                                    this.props.navigation.navigate("RequestDetail",
+                                            {
+                                                id: item.id,
+                                                owner: item.owner,
+                                                ownerId: item.ownerId,
+                                                location: item.location,
+                                                profilePhoto: item.profilePhoto,
+                                                title: item.title,
+                                                description: item.description,
+                                                necessity: item.necessity
+                                            }
+                                        )
+                                }
+                                style={{
+                                    flex:1,
+                                    alignItems: "flex-end",
+                                    width: 30
+                                }}
+                            >
+                            <Icon size={25} name={"arrow-right"} style={{ color: "grey" }} />
+                            </TouchableHighlight>
+                        </View> 
                 )
             }
           />
@@ -75,5 +105,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
+  },
+
+  cardContainer: {
+    backgroundColor: "#ffffff",
+    borderWidth: 1,
+    shadowOffset: { width: 0, height: 13 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 3,
+    padding: 5,
+    width: Dimensions.get("window").width,
+    height: 70,
+    flex: 1,
+    flexDirection: 'row'
   }
 });
