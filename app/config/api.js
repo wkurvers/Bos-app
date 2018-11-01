@@ -1,10 +1,9 @@
 import React from "react";
-import { NetInfo } from "react-native";
 
 export default class Api {
   static instance = null;
 
-  url = "0.0.0.0:5000/";
+  url = "145.100.213.174:5000/";
 
   static getInstance() {
     if (Api.instance == null) {
@@ -15,37 +14,32 @@ export default class Api {
   }
 
   callApi(action, method, data, callBack = response => console.log(response)) {
-    NetInfo.getConnectionInfo().then(connectionInfo => {
-      if (connectionInfo.type != "none") {
-        if (method == "GET") {
-          fetch(action, {
-            method: method,
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
-            .then(response => response.json())
-            .then(responseJson => callBack(responseJson))
-            .catch(error => {
-              callBack(error);
-            });
-        } else if (method == "POST") {
-          fetch(this.url + action, {
-            method: method,
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-          })
-            .then(response => response.json())
-            .then(responseJson => callBack(responseJson))
-            .catch(error => {
-              callBack(error);
-            });
+    if (method == "GET") {
+      fetch(action, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json"
         }
-      } else {
-        callBack({ responseCode: 503 });
-      }
-    });
+      })
+        .then(response => response.json())
+        .then(responseJson => callBack(responseJson))
+        .catch(error => {
+          callBack(error);
+        });
+    } else if (method == "POST") {
+      fetch(this.url + action, {
+        method: method,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(responseJson => callBack(responseJson))
+        .catch(error => {
+          callBack(error);
+        });
+    }
   }
 }

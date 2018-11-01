@@ -28,43 +28,30 @@ export default class Three extends Component {
       loading: true,
       refreshing: false,
       sleeping: false,
-      data: [
-        {
-          title: "cool project",
-          image: "https://media.giphy.com/media/12b3E4U9aSndxC/giphy.gif",
-          location: "Groningen",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. ",
-          likes: 2
-        },
-        {
-          title: "cool project",
-          image: "https://media4.giphy.com/media/6csVEPEmHWhWg/200.gif",
-          location: "Groningen",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. ",
-          likes: 15
-        },
-        {
-          title: "cool project",
-          image: "https://media4.giphy.com/media/AA69fOAMCPa4o/200.gif",
-          location: "Groningen",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. ",
-          likes: 6
-        },
-        {
-          title: "cool project",
-          image: "https://media.giphy.com/media/OVHFny0I7njuU/giphy.gif",
-          location: "Groningen",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt condimentum turpis ut iaculis. Suspendisse elit justo, commodo vel turpis eget, sodales placerat purus. Nulla hendrerit suscipit enim, ac eleifend neque lobortis vitae. ",
-          likes: 4
-        }
-      ],
+      data: [],
       slicedArray: [],
       fullArray: []
     };
+
+    let api = Api.getInstance();
+    console.log(" hallo");
+    api.callApi(
+      "getAllProjects",
+      "POST",
+      {
+        hello: "hello"
+      },
+      response => {
+        console.log("ok");
+        console.log(response);
+        if (response["responseCode"] == 200) {
+          this.setState({
+            data: response,
+            loading: false
+          });
+        }
+      }
+    );
   }
 
   render() {
@@ -88,7 +75,7 @@ export default class Three extends Component {
                 <View style={styles.card} elevation={5}>
                   <TouchableHighlight onPress={() => {}}>
                     <ImageBackground
-                      source={{ uri: item.image }}
+                      source={{ uri: item.thumbnail }}
                       resizeMode="cover"
                       style={{ width: "100%", height: 250 }}
                     >
