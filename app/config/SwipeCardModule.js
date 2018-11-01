@@ -17,7 +17,6 @@ import {
 import clamp from "clamp";
 
 import Defaults from "./Default.js";
-
 const viewport = Dimensions.get("window");
 const SWIPE_THRESHOLD = 120;
 
